@@ -3,8 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "nodemon -r esm server.js"
+  "engines": {
+    "node": "16.13.2",
+    "npm": "8.1.2"
+  },
+
+    "scripts": {
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run server\"",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
