@@ -3,7 +3,7 @@ import express from "express";
 // controllers
 import { register, login } from "../controllers/auth";
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router.post("/register", register);
 router.post("/login", login);

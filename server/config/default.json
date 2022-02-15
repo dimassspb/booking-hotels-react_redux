@@ -1,0 +1,4 @@
+{
+  "PORT": 8000,
+  "DATABASE": "mongodb+srv://dimassspb:pathfinder999@cluster0.bt65b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}

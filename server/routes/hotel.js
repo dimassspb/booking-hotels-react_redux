@@ -9,15 +9,15 @@ import {
     sellerHotels,
     remove,
     show,
-    refresh
+    refresh,
 } from "../controllers/hotel";
 
 // middleware
 import { requireSignin, hotelOwner } from "../middlewares";
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
-router.post("/create-hotel", requireSignin, formidable(),hotelOwner, create);
+router.post("/create-hotel", requireSignin, formidable(), hotelOwner, create);
 router.get("/hotels", hotels);
 router.get("/hotel/image/:hotelId", image);
 router.get("/seller-hotels", requireSignin, sellerHotels);
