@@ -10,6 +10,7 @@ import Register from "./auth/Register";
 import UserPanel from "./user/UserPanel";
 import SellerPanel from "./user/SellerPanel";
 import NewHotel from "./hotels/NewHotel";
+import EditHotel from "./hotels/EditHotel";
 
 function App() {
     return (
@@ -20,21 +21,14 @@ function App() {
                 <Route exact path='/' component={Home} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/register' component={Register} />
-                <PrivateRoute
-                    exact
-                    path='/panel'
-                    component={UserPanel}
-                />
+                <PrivateRoute exact path='/panel' component={UserPanel} />
                 <PrivateRoute
                     exact
                     path='/panel/seller'
                     component={SellerPanel}
                 />
-                <PrivateRoute
-                    exact
-                    path='/hotels/new'
-                    component={NewHotel}
-                />
+                <PrivateRoute exact path='/hotels/new' component={NewHotel} />
+                <PrivateRoute exact path='/hotel/edit/:hotelId' component={EditHotel} />
             </Switch>
         </BrowserRouter>
     );

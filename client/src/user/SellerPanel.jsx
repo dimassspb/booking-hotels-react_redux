@@ -23,7 +23,7 @@ const SellerPanel = () => {
             setLoading(false);
         } catch (error) {
             setError(error);
-            console.log("Error:", error);
+            toast.error(error.message);
             setLoading(false);
         }
     }

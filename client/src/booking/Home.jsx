@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import Error from "../components/Error";
 import Pagination from "../components/Pagination";
 import { paginate } from "../utils/paginate";
+import { toast } from "react-toastify";
 
 const Home = () => {
     const [hotels, setHotels] = useState([]);
@@ -23,15 +24,13 @@ const Home = () => {
             setLoading(false);
         } catch (error) {
             setError(error);
-            console.log("Error:", error);
+            toast.error(error.message);
             setLoading(false);
         }
     }
 
     const handleHotelDelete = () => {
-        console.log("====================================");
         console.log("hotel deleted");
-        console.log("====================================");
     };
 
     useEffect(() => {

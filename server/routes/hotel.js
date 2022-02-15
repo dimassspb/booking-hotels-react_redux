@@ -8,6 +8,8 @@ import {
     image,
     sellerHotels,
     remove,
+    show,
+    refresh
 } from "../controllers/hotel";
 
 // middleware
@@ -15,10 +17,12 @@ import { requireSignin, hotelOwner } from "../middlewares";
 
 const router = express.Router();
 
-router.post("/create-hotel", requireSignin, formidable(), create);
+router.post("/create-hotel", requireSignin, formidable(),hotelOwner, create);
 router.get("/hotels", hotels);
 router.get("/hotel/image/:hotelId", image);
 router.get("/seller-hotels", requireSignin, sellerHotels);
 router.delete("/delete-hotel/:hotelId", requireSignin, hotelOwner, remove);
+router.get("/hotel/:hotelId", show);
+router.put("/refresh-hotel/:hotelId", requireSignin, formidable(), refresh);
 
 module.exports = router;

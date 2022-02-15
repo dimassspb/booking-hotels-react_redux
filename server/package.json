@@ -1,32 +1,29 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "engines": {
-    "node": "16.13.2",
-    "npm": "8.1.2"
-  },
-
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "engines": {
+        "node": "16.13.2",
+        "npm": "8.1.2"
+    },
     "scripts": {
-    "server": "nodemon server.js",
-    "dev": "concurrently \"npm run server\"",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^5.0.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "esm": "^3.2.25",
-    "express": "^4.17.1",
-    "express-formidable": "^1.2.0",
-    "express-jwt": "^6.1.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.9",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.6"
-  }
+        "start": "nodemon -r esm server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.0.0",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "esm": "^3.2.25",
+        "express": "^4.17.1",
+        "express-formidable": "^1.2.0",
+        "express-jwt": "^6.1.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.11.9",
+        "morgan": "^1.10.0",
+        "nodemon": "^2.0.6"
+    }
 }
