@@ -1,10 +1,12 @@
 import Hotel from "../models/hotel";
 import Order from "../models/order";
 import fs from "fs";
+import { log } from "console";
 
 export const create = async (req, res) => {
     let fields = req.fields;
     let files = req.files;
+
     let hotel = new Hotel(fields);
     hotel.postedBy = req.user._id;
 
@@ -62,10 +64,10 @@ export const remove = async (req, res) => {
 
 export const show = async (req, res) => {
     let hotel = await Hotel.findById(req.params.hotelId)
-        .populate("postedBy", "_id, name")
+        .populate("postedBy", "_id name")
         .select("-image.data")
         .exec();
-    console.log("Hotel", hotel);
+    console.log("SINGLE HOTEL", hotel);
     res.json(hotel);
 };
 
@@ -88,4 +90,21 @@ export const refresh = async (req, res) => {
         console.log(error);
         res.status(400).send("Update faild. Try again.");
     }
+};
+
+export const searchResults = async (req, res) => {
+    const { location, date, bed } = req.body;
+    // console.log(location, date, bed);
+    // console.log(date);
+    const dateArr = date.split(",");
+
+    let result = await Hotel.find({
+        from: { $gte: new Date(dateArr[0]) },
+        to: { $gte: new Date(dateArr[1]) },
+        location,
+        bed,
+    })
+        .select("-image.data")
+        .exec();
+    res.json(result);
 };

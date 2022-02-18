@@ -12,6 +12,7 @@ import SellerPanel from "./user/SellerPanel";
 import NewHotel from "./hotels/NewHotel";
 import EditHotel from "./hotels/EditHotel";
 import AboutHotel from "./hotels/AboutHotel.jsx";
+import SearchResults from "./hotels/SearchResults";
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                     component={EditHotel}
                 />
                 <Route exact path='/hotel/:hotelId' component={AboutHotel} />
+                <Route exact path='/search' component={SearchResults} />
             </Switch>
         </BrowserRouter>
     );

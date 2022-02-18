@@ -10,7 +10,7 @@ import {
     remove,
     show,
     refresh,
-    // userHotelBookings,
+    searchResults,
 } from "../controllers/hotel";
 
 // middleware
@@ -25,5 +25,5 @@ router.get("/seller-hotels", requireSignin, sellerHotels);
 router.delete("/delete-hotel/:hotelId", requireSignin, hotelOwner, remove);
 router.get("/hotel/:hotelId", show);
 router.put("/refresh-hotel/:hotelId", requireSignin, formidable(), refresh);
-
+router.post("/search-res", searchResults);
 module.exports = router;

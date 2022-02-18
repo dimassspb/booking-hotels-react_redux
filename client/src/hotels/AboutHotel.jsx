@@ -11,7 +11,7 @@ const AboutHotel = ({ match, history }) => {
     // redux
     const { auth } = useSelector((state) => ({ ...state }));
     // state
-    const [hotel, setHotel] = useState("");
+    const [hotel, setHotel] = useState({});
     const [loading, setLoading] = useState();
     const [image, setImage] = useState();
     const [alreadyBooked, setAlreadyBooked] = useState(false);
@@ -33,6 +33,9 @@ const AboutHotel = ({ match, history }) => {
         setLoading(true);
         let res = await show(match.params.hotelId);
         setLoading(false);
+        console.log("====================================");
+        console.log(res.data);
+        console.log("====================================");
         setHotel(res.data);
         setImage(`${process.env.REACT_APP_API}/hotel/image/${res.data._id}`);
     };
@@ -103,8 +106,8 @@ const AboutHotel = ({ match, history }) => {
                                     )}
                                 </p>
                                 <i>
-                                    Posted by
-                                    {hotel.postedBy}
+                                    Posted by{" "}
+                                    {hotel.postedBy && hotel.postedBy.name}
                                 </i>
                                 <br />
                                 <button
