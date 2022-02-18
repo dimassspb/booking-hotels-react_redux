@@ -7,9 +7,8 @@ if (window.localStorage.getItem("auth")) {
 }
 // console.log(userState);
 
-
 export const authReducer = (state = userState, action) => {
-  // console.log("State", state);
+    // console.log("State", state);
     switch (action.type) {
         case "LOGGED_IN_USER":
             return { ...state, ...action.payload };

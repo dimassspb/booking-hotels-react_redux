@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { allHotels } from "../actions/hotel";
 import SmallCard from "../components/cards/SmallCard";
 import Loader from "../components/Loader";
-import Error from "../components/Error";
 import Pagination from "../components/Pagination";
 import { paginate } from "../utils/paginate";
 import { toast } from "react-toastify";
@@ -69,7 +68,7 @@ const Home = () => {
                         );
                     })
                 ) : (
-                    <Error />
+                    <h2>No hotels</h2>
                 )}
             </div>
             <div className='d-flex justify-content-center align-items-center'>

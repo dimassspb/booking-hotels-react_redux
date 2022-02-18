@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { capitalizeName } from "../utils/utils";
+import { capitalizeName } from "../utils/capitalizeName";
 
 const NavBar = () => {
     const dispatch = useDispatch();

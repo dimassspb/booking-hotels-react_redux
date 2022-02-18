@@ -1,9 +1,8 @@
 import Hotel from "../models/hotel";
+import Order from "../models/order";
 import fs from "fs";
 
 export const create = async (req, res) => {
-    console.log("req fields", req.fields);
-    // console.log("req files", req.files);
     let fields = req.fields;
     let files = req.files;
     let hotel = new Hotel(fields);
@@ -28,13 +27,13 @@ export const create = async (req, res) => {
 };
 
 export const hotels = async (req, res) => {
+    // let all = await Hotel.find({ from: { $gte: new Date() } });
     let all = await Hotel.find({})
         .limit(20)
         .select("-image.data")
         .populate("postedBy", "_id name")
         .exec();
     res.json(all);
-    // console.log(all);
 };
 
 export const image = async (req, res) => {
@@ -63,6 +62,7 @@ export const remove = async (req, res) => {
 
 export const show = async (req, res) => {
     let hotel = await Hotel.findById(req.params.hotelId)
+        .populate("postedBy", "_id, name")
         .select("-image.data")
         .exec();
     console.log("Hotel", hotel);

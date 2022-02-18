@@ -36,8 +36,7 @@ const EditHotel = ({ match }) => {
         try {
             setLoading(true);
             let res = await show(match.params.hotelId);
-            console.log(res);
-            // setHotel(res.data);
+            // console.log(res);
             setValues({ ...values, ...res.data });
             setPreview(
                 `${process.env.REACT_APP_API}/hotel/image/${res.data._id}`,

@@ -4,21 +4,24 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteHotel, sellerHotels } from "../actions/hotel";
 import SmallCard from "../components/cards/SmallCard";
-import Error from "../components/Error";
 import Loader from "../components/Loader";
 import PanelNav from "../components/PanelNav";
 
 const SellerPanel = () => {
     const { auth } = useSelector((state) => ({ ...state }));
     const [hotels, setHotels] = useState([]);
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
+
+    useEffect(() => {
+        loadSellerHotels();
+    }, []);
 
     async function loadSellerHotels() {
         try {
             setLoading(true);
             let res = await sellerHotels(auth.token);
-            // console.log(res.data);
+            console.log("res.data", res.data);
             setHotels(res.data);
             setLoading(false);
         } catch (error) {
@@ -36,46 +39,39 @@ const SellerPanel = () => {
         });
     };
 
-    useEffect(() => {
-        loadSellerHotels();
-    }, []);
     return (
         <>
-            <div className='container-fluid p-5'>
-                <h1>Seller Panel</h1>
-            </div>
-            <div className='conteiner-fluid p-4'>
+            <div className='container-fluid p-4'>
                 <PanelNav />
             </div>
-            <div className='container-fluid p-4'>
-                <div className='row'>
-                    <div className='col-md-10'>
-                        <h1>Hotels</h1>
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className='container-fluid'>
+                    <div className='row'>
+                        <div className='col-md-10'>
+                            <h2>Your Hotels</h2>
+                        </div>
+                        <div className='col-md-2'>
+                            <Link to='/hotels/new' className='btn btn-primary'>
+                                Add Hotel
+                            </Link>
+                        </div>
                     </div>
-                    <div className='col-md-2'>
-                        <Link to='/hotels/new' className='btn btn-primary'>
-                            Add new
-                        </Link>
-                    </div>
-                </div>
-                <div className='row'>
-                    {loading ? (
-                        <Loader />
-                    ) : hotels.length >= 1 ? (
-                        hotels.map((hotel) => (
+
+                    <div className='row'>
+                        {hotels.map((hotel) => (
                             <SmallCard
                                 key={hotel._id}
                                 hotel={hotel}
-                                showMoreBtn={false}
-                                handleHotelDelete={handleHotelDelete}
+                                showViewMoreButton={false}
                                 owner={true}
+                                handleHotelDelete={handleHotelDelete}
                             />
-                        ))
-                    ) : (
-                        <Error />
-                    )}
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
         </>
     );
 };

@@ -2,7 +2,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TopNav from "./components/NavBar";
-import PrivateRoute from "./components/PrivateRoute"
+import PrivateRoute from "./components/PrivateRoute";
 // components
 import Home from "./booking/Home";
 import Login from "./auth/Login";
@@ -11,6 +11,7 @@ import UserPanel from "./user/UserPanel";
 import SellerPanel from "./user/SellerPanel";
 import NewHotel from "./hotels/NewHotel";
 import EditHotel from "./hotels/EditHotel";
+import AboutHotel from "./hotels/AboutHotel.jsx";
 
 function App() {
     return (
@@ -28,7 +29,12 @@ function App() {
                     component={SellerPanel}
                 />
                 <PrivateRoute exact path='/hotels/new' component={NewHotel} />
-                <PrivateRoute exact path='/hotel/edit/:hotelId' component={EditHotel} />
+                <PrivateRoute
+                    exact
+                    path='/hotel/edit/:hotelId'
+                    component={EditHotel}
+                />
+                <Route exact path='/hotel/:hotelId' component={AboutHotel} />
             </Switch>
         </BrowserRouter>
     );

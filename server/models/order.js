@@ -1,10 +1,11 @@
-let mongoose;_6d0‍.x([["default",()=>_6d0‍.o]]);_6d0‍.w("mongoose",[["default",["mongoose"],function(v){mongoose=v}]]);
-
-const { Schema } = mongoose;
+import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema;
 
-const hotelSchema = new Schema(
-    {
+const orderSchema = new mongoose.Schema(
+    {   hotelId: {
+        type: String,
+            required: "Title is required",
+    },
         title: {
             type: String,
             required: "Title is required",
@@ -22,13 +23,9 @@ const hotelSchema = new Schema(
             required: "Price is required",
             trim: true,
         },
-        postedBy: {
+        orderedBy: {
             type: ObjectId,
             ref: "User",
-        },
-        image: {
-            data: Buffer,
-            contentType: String,
         },
         from: {
             type: Date,
@@ -43,4 +40,4 @@ const hotelSchema = new Schema(
     { timestamps: true },
 );
 
-_6d0‍.d(mongoose.model("Hotel", hotelSchema));
+export default mongoose.model("Order", orderSchema);
