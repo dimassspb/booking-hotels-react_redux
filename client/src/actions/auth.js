@@ -1,5 +1,5 @@
 import axios from "axios";
-
+// const REACT_APP_API = "http://localhost:8080/api";
 export const register = async (user) =>
   await axios.post(`${process.env.REACT_APP_API}/register`, user);
 

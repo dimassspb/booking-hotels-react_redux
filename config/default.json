@@ -1,5 +1,0 @@
-{
-    "PORT": 8000,
-    "DATABASE": "mongodb+srv://dimassspb:pathfinder999@cluster0.bt65b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "JWT_SECRET": "DJFHYRHRJUHJ4HJ4578489494JHF24789"
-}

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const REACT_APP_API = "http://localhost:8080/api";
 export const createHotel = async (token, data) =>
     await axios.post(`${process.env.REACT_APP_API}/create-hotel`, data, {
         headers: {
@@ -8,7 +8,7 @@ export const createHotel = async (token, data) =>
     });
 
 export const allHotels = async () =>
-    await axios.get(`${process.env.REACT_APP_API}/hotels`);
+    await axios.get(`${REACT_APP_API}/hotels`);
 
 export const sellerHotels = async (token) =>
     await axios.get(`${process.env.REACT_APP_API}/seller-hotels`, {
