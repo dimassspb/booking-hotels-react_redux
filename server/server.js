@@ -31,14 +31,20 @@ readdirSync("./routes").map((r) => app.use("/api", require(`./routes/${r}`)));
 // const port = process.env.PORT || 8000;
 const PORT = config.get("PORT") || 8000;
 
+// ***************************
+    // app.use("/", express.static(path.join(__dirname, "client")));
 
-    app.use("/", express.static(path.join(__dirname, "client")));
+    // const indexPath = path.join(__dirname, "client", "index.html");
 
-    const indexPath = path.join(__dirname, "client", "index.html");
+    // app.get('*', (req, res) => {
+    //     res.sendFile(indexPath)
+    // })
+// ***************************
 
-    app.get('*', (req, res) => {
-        res.sendFile(indexPath)
-    })
-
+app.use(express.static(path.join(__dirname, "client", "build")));
+// Right before your app.listen(), add this:
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
