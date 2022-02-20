@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const config = require("config");
 
-async function register (req, res) {
+async function register(req, res) {
     try {
         console.log(req.body);
         const { name, email, password } = req.body;
@@ -25,9 +26,9 @@ async function register (req, res) {
         console.log("CREATE USER FAILED", err);
         return res.status(400).send("Error. Try again.");
     }
-};
+}
 
-async function login (req, res) {
+async function login(req, res) {
     try {
         // console.log(req.body);
         const { email, password } = req.body;
@@ -41,7 +42,7 @@ async function login (req, res) {
             console.log("COMPARE PASSWORD IN LOGIN ERR", err);
             if (!match || err) return res.status(400).send("Wrong password");
             // GENERATE A TOKEN THEN SEND AS RESPONSE TO CLIENT
-            let token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+            let token = jwt.sign({ _id: user._id }, config.get("JWT_SECRET"), {
                 expiresIn: "7d",
             });
             res.json({
@@ -59,6 +60,6 @@ async function login (req, res) {
         console.log("LOGIN ERROR", err);
         res.status(400).send("Signin failed");
     }
-};
+}
 
 module.exports = { register, login };
