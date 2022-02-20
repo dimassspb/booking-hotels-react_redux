@@ -20,6 +20,7 @@ const SmallCard = ({
                                 src={`${process.env.REACT_APP_API}/hotel/image/${hotel._id}`}
                                 alt='default hotel image'
                                 className='card-image img img-fluid'
+                                style={{maxWidth: '500px'}}
                             />
                         ) : (
                             <img
